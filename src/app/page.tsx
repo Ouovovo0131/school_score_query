@@ -54,6 +54,8 @@ export default function Home() {
   const [report, setReport] = useState<ScoreReport>(demoReport);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const loginUrl = "https://shcloud14.k12ea.gov.tw/HLHSHLC/Auth/Auth/CloudLogin";
+  const [embedLogin, setEmbedLogin] = useState(true);
 
   const lineWidth = 640;
   const lineHeight = 260;
@@ -113,6 +115,22 @@ export default function Home() {
                   這個專案已先完成 Next.js + Node.js + React 的部署骨架，前端會送出登入資料到 API，再由後端回傳分析報表。等你提供學校平台的實際登入頁、欄位與 selector，就能把 demo 轉成真實抓取流程。
                 </p>
               </div>
+
+              <div className="mt-4 flex items-center gap-3">
+                <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="checkbox" checked={embedLogin} onChange={() => setEmbedLogin((s) => !s)} className="scale-110" />
+                  在左側嵌入學校登入頁面（若被拒絕請改用下方表單）
+                </label>
+              </div>
+
+              {embedLogin ? (
+                <div className="mt-4 w-full max-w-3xl overflow-hidden rounded-2xl border bg-white">
+                  <div className="px-3 py-2 text-sm text-slate-600">嵌入登入頁面（來源：{loginUrl}）</div>
+                  <div className="h-[420px]">
+                    <iframe src={loginUrl} title="校方登入" className="h-full w-full border-0" />
+                  </div>
+                </div>
+              ) : null}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

@@ -2,7 +2,7 @@ import { buildDemoReport, type AnalyzeRequest } from "@/lib/score-report";
 import { loginAndGetHtml } from "@/lib/scraper";
 
 export async function POST(request: Request) {
-  const payload = (await request.json().catch(() => null)) as Partial<AnalyzeRequest & { mode?: string }> | null;
+  const payload = (await request.json().catch(() => null)) as Partial<AnalyzeRequest & { mode?: string; loginUrl?: string }> | null;
 
   if (!payload?.account?.trim() || !payload?.password?.trim() || !payload?.school?.trim()) {
     return Response.json(

@@ -1,0 +1,20 @@
+# Gradle / Android Studio
+.gradle/
+.gradle-user-home/
+.android-home/
+build/
+**/build/
+local.properties
+
+# Android generated artifacts
+app/release/
+*.apk
+*.ap_
+*.aab
+*.aar
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keep the Gradle wrapper script tracked on Windows.
+!gradlew.bat
